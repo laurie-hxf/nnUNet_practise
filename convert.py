@@ -1,6 +1,9 @@
 import os
 import shutil
 from batchgenerators.utilities.file_and_folder_operations import maybe_mkdir_p, save_json
+from PIL import Image
+import numpy as np
+
 
 def organize_dataset(input_dir, output_dir, is_label=False):
     for case in os.listdir(input_dir):
@@ -11,11 +14,19 @@ def organize_dataset(input_dir, output_dir, is_label=False):
 
             # Copy image to output directory
             if label_file is None:
-                shutil.copy(image_file, os.path.join(output_dir, f'{case}_0000.png'))
+                img = Image.open(image_file).convert("L")
+                img.save(os.path.join(output_dir, f'{case}_0000.png'))
+                # shutil.copy(image_file, os.path.join(output_dir, f'{case}_0000.png'))
 
             if is_label:
+                label_image = Image.open(label_file)
+                label_array = np.array(label_image)
+                label_array[label_array == 255] = 1
+                converted_label_image = Image.fromarray(label_array)
+                converted_label_image.save(os.path.join(output_dir, f'{case}.png'))
+
                 # Copy label to output directory
-                shutil.copy(label_file, os.path.join(output_dir, f'{case}.png'))
+                # shutil.copy(label_file, os.path.join(output_dir, f'{case}.png'))
 
 def main():
     base_dir = '/Users/laurie/Documents/nnunet_train/data/avrdb/crop_train'

@@ -29,9 +29,12 @@ def organize_dataset(input_dir, output_dir, is_label=False):
                 # shutil.copy(label_file, os.path.join(output_dir, f'{case}.png'))
 
 def main():
-    base_dir = '/Users/laurie/Documents/nnunet_train/data/avrdb/crop_train'
-    test_dir = '/Users/laurie/Documents/nnunet_train/data/avrdb/crop_test'
-    nnunet_raw_dir = '/Users/laurie/Documents/nnunet_train/nnUNet/nnUNet_raw/Dataset001_avrdb'
+    # base_dir = '/Users/laurie/Documents/nnunet_train/data/avrdb/crop_train'
+    base_dir = '/Users/laurie/Documents/nnunet_train/data/chasedb1/crop_train'
+    # test_dir = '/Users/laurie/Documents/nnunet_train/data/avrdb/crop_test'
+    test_dir = '/Users/laurie/Documents/nnunet_train/data/chasedb1/crop_test'
+    # nnunet_raw_dir = '/Users/laurie/Documents/nnunet_train/nnUNet/nnUNet_raw/Dataset001_avrdb'
+    nnunet_raw_dir = '/Users/laurie/Documents/nnunet_train/nnUNet/nnUNet_raw/Dataset002_chasedb1'
     imagesTr_dir = os.path.join(nnunet_raw_dir, 'imagesTr')
     labelsTr_dir = os.path.join(nnunet_raw_dir, 'labelsTr')
     imagesTs_dir = os.path.join(nnunet_raw_dir, 'imagesTs')
